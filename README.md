@@ -4,7 +4,7 @@
 [![rank](https://make.fun/badge/tiny-chess-01/M3264/tiny-chess-engine/rank.svg)](https://make.fun/bounty/tiny-chess-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=tiny-chess-01)
 [![reward](https://make.fun/badge/tiny-chess-01/M3264/tiny-chess-engine/reward.svg)](https://make.fun/bounty/tiny-chess-01?utm_source=github&utm_medium=readme&utm_campaign=tiny-chess-01)
 
-A chess engine in one 3,842-byte `main.py` for make.fun `tiny-chess-01`:
+A chess engine in one 3,845-byte `main.py` for make.fun `tiny-chess-01`:
 no model calls, pure Python 3.13 standard library.
 
 What it does: talks to the trial env (`POST /game`, `POST /move`), and for
@@ -29,7 +29,11 @@ Bounded tactical/perft and local HTTP smoke checks are not a server grade
 or an Elo claim. Latest iteration (v4) adds only eval terms — tempo (+8),
 rook open-file (+18) / half-open (+8), seventh rank (+12), all verified by a
 direct eval-delta check — at 3,842 / 4,096 bytes; prior server grade 1279 Elo
-(3W-3L). Authorship includes earlier Muse and later GPT work.
+(3W-3L), then 1364 Elo (3W-1D-2L) for v4. Iteration v5 adds one search
+change: check extension (children of an in-check node are searched one ply
+deeper, `d-1+ic`), verified legal/deterministic, hardest-position time
+1.52s (x3 slowdown 4.6s, inside the 8s cap) at 3,845 / 4,096 bytes; no Elo
+claimed. Authorship includes earlier Muse and later GPT work.
 
 ## Run it
 
